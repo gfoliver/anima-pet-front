@@ -83,3 +83,22 @@ th, td, tr, table {
 th, td {
     padding: .5rem;
 }
+
+td:last-child {
+    display: flex;
+    align-items: center;
+}
+
+button + button {
+    margin-left: .5rem;
+}
+
+.deleteBtn {
+    background-color: rgb(255, 24, 24);
+    color: #fff;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -15,6 +15,15 @@ function Home() {
         await api.post('/pet/adopt', {id});
         fetchData();
     }, [fetchData]);
+    
+    const deletePet = useCallback(async (id) => {
+        const canDelete = window.confirm('Tem certeza que deseja deletar este pet?');
+        if (!canDelete)
+            return;
+
+        await api.delete('/pet/' + id);
+        fetchData();
+    }, [fetchData]);
 
     useEffect(() => {
         fetchData();
@@ -39,7 +48,10 @@ function Home() {
                             <tr>
                                 <td>{pet.name}</td>
                                 <td>{pet.adopted ? 'Adotado' : 'Esperando Adoção'}</td>
-                                <td>{!pet.adopted && <button className="btn" onClick={() => adopt(pet.id)}>Adotar</button>}</td>
+                                <td>
+                                    {!pet.adopted && <button className="btn" onClick={() => adopt(pet.id)}>Adotar</button>}
+                                    <button onClick={() => deletePet(pet.id)} title="Deletar" className="deleteBtn">X</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
