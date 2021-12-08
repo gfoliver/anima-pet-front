@@ -43,18 +43,20 @@ function Home() {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {pets.map(pet => (
-                            <tr>
-                                <td>{pet.name}</td>
-                                <td>{pet.adopted ? 'Adotado' : 'Esperando Adoção'}</td>
-                                <td>
-                                    {!pet.adopted && <button className="btn" onClick={() => adopt(pet.id)}>Adotar</button>}
-                                    <button onClick={() => deletePet(pet.id)} title="Deletar" className="deleteBtn">X</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {pets.length ? (
+                        <tbody data-testid="table-body">
+                            {pets.map(pet => (
+                                <tr key={pet.id} data-testid={'pet-row-' + pet.id}>
+                                    <td>{pet.name}</td>
+                                    <td>{pet.adopted ? 'Adotado' : 'Esperando Adoção'}</td>
+                                    <td>
+                                        {!pet.adopted && <button className="btn" onClick={() => adopt(pet.id)}>Adotar</button>}
+                                        <button onClick={() => deletePet(pet.id)} title="Deletar" className="deleteBtn">X</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    ) : null}
                 </table>
           </div>
           <div className="row">

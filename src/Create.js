@@ -3,7 +3,7 @@ import api from "./services/api";
 import { useNavigate } from 'react-router-dom';
 
 function Create() {
-    const [name, setName] = useState();
+    const [name, setName] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(async (e) => {
@@ -14,11 +14,11 @@ function Create() {
 
     return (
         <div className="Create">
-            <div class="container">
-                <div class="card">
+            <div className="container">
+                <div className="card">
                     <form onSubmit={handleSubmit}>
                         <h2>Cadastrar um PET</h2>
-                        <div class="form-group">
+                        <div className="form-group">
                             <input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)}></input>
                         </div>
                         <button className="btn" type="submit">Salvar</button>
